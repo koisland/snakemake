@@ -886,7 +886,7 @@ class Workflow(WorkflowExecutorInterface):
     def printdag(self):
         self._prepare_dag(
             forceall=self.dag_settings.forceall,
-            ignore_incomplete=self.execution_settings.ignore_incomplete,
+            ignore_incomplete=True,
             lock_warn_only=True,
         )
         self._build_dag()
@@ -895,11 +895,11 @@ class Workflow(WorkflowExecutorInterface):
     def printrulegraph(self):
         self._prepare_dag(
             forceall=self.dag_settings.forceall,
-            ignore_incomplete=self.execution_settings.ignore_incomplete,
+            ignore_incomplete=True,
             lock_warn_only=True,
         )
         self._build_dag()
-        self.dag.rule_dot()
+        print(self.dag.rule_dot())
 
     def printfilegraph(self):
         self._prepare_dag(
@@ -918,7 +918,7 @@ class Workflow(WorkflowExecutorInterface):
         )
         self._build_dag()
 
-        self.dag.d3dag()
+        print(self.dag.d3dag())
 
     def containerize(self):
         from snakemake.deployment.containerize import containerize
